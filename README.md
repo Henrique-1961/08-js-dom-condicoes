@@ -1,2 +1,5 @@
-# 08-js-dom-condicoes
-Atividade 08 - Desenvolvimento Web
+# #08 - JS: DOM e Condições
+
+### Nome aluno(a)
+
+Henrique Cardoso de Souza

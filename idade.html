@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de idade</title>
+</head>
+<body>
+    <style>
+        body {
+            background-color: rgb(70, 142, 236);
+            font: normal 15pt arial
+        }
+
+        header {
+            color: white;
+            text-align: center;
+        }
+
+        section {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            width: 500px;
+            margin: auto;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.363);
+        }
+
+        div {
+            text-align: center;
+            padding: 8px;
+        }
+
+        div img {
+            width: 100%;
+        }
+
+        div p input[type="button"] {
+            padding: 10px;
+            color: white;
+            transition: 0.2s;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: rgb(25, 100, 47);
+        }
+
+        div p input[type="button"]:hover {
+            background-color: rgb(30, 163, 70);
+        }
+
+        footer {
+            color: white;
+            text-align: center;
+            font-style: italic;
+            font-size: 0.5rem;
+        }
+    </style>
+
+    <script>
+        function verificar() {
+            var data = new Date();
+            var ano = data.getFullYear();
+            var fano = document.getElementById("txtano");
+            var res = document.querySelector("div#res");
+
+            if (fano.value.length == 0 || Number(fano.value) > ano) {
+                alert("ERRO\nVerifique os dados e tente novamente!");
+                return;
+            }
+            
+            var fsex = document.getElementsByName("radsex");
+            var idade = ano - Number(fano.value);
+            var genero = "";
+
+            var img = document.createElement("img");
+            img.setAttribute("id", "foto");
+
+            if (fsex[0].checked) {
+                genero = "masculino";
+
+                if (idade < 10) {
+                    img.setAttribute("src", "m-bebe.png");
+                }
+
+                else if (idade < 21) {
+                    img.setAttribute("src", "m-jovem.png");
+                }
+
+                else if (idade < 50) {
+                    img.setAttribute("src", "m-adulto.png");
+                }
+
+                else {
+                    img.setAttribute("src", "m-idoso.png");
+                }
+            }
+
+            else {
+                genero = "feminino";
+
+                if (idade < 10) {
+                    img.setAttribute("src", "f-bebe.png");
+                }
+
+                else if (idade < 21) {
+                    img.setAttribute("src", "f-jovem.png");
+                }
+
+                else if (idade < 50) {
+                    img.setAttribute("src", "f-adulto.png");
+                }
+
+                else {
+                    img.setAttribute("src", "f-idoso.png");
+                }
+            }
+        
+            
+            res.style.textAlign = "center";
+            res.innerHTML = `Dectamos um${genero == "masculino" ? " homem" : "a mulher"}, com ${idade} anos`;
+            res.appendChild(img);
+        }
+    </script>
+
+    <header>
+        <h1>Verificador de idade</h1>
+    </header>
+
+    <section>
+        <div>
+            <p>
+                Ano de nascimento:
+
+                <input id="txtano" type="number" name="txtano" min="0">
+            </p>
+
+            <p>
+                Sexo:
+
+                <input id="mas" type="radio" name="radsex" checked>
+                <label for="mas">Masculino</label>
+
+                <input id="fem" type="radio" name="radsex">
+                <label for="fem">Feminino</label>
+            </p>
+
+            <p>
+                <input type="button" value="Verificar" onclick="verificar()">
+            </p>
+        </div>
+
+        <div id="res">
+            Preencha os dados acima para ver o resultado!
+        </div>
+    </section>
+
+    <footer>
+        <h1>&copy; Henrique</h1>
+    </footer>
+</body>
+</html>
